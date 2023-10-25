@@ -1,2 +1,7 @@
-# CMS-app
-Content Management App (شبكة) is a specialized content management system designed for computer science subjects as the project for software engineering CS290
+# CMS app
+
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.
