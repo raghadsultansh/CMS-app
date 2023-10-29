@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         scrollbarTheme: ScrollbarThemeData(),
       ),
       themeMode: _themeMode,
-      home: LoginPageWidget(),
+      home: HomePageWidget(),
       navigatorObservers: [routeObserver],
     );
   }

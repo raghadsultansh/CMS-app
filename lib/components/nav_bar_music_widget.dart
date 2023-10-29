@@ -1,4 +1,4 @@
-import '/classeslist/classeslist_widget.dart';
+import '/chat/chat_widget.dart';
 import '/edit_profile_user/edit_profile_user_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -150,7 +150,7 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ClasseslistWidget(),
+                        builder: (context) => ListFavWidget(),
                       ),
                     );
                   },
@@ -169,7 +169,7 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListFavWidget(),
+                        builder: (context) => ChatWidget(),
                       ),
                     );
                   },

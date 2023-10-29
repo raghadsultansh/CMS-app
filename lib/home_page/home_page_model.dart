@@ -1,4 +1,7 @@
 import '/components/nav_bar_music_widget.dart';
+import '/cs150/cs150_widget.dart';
+import '/cs151/cs151_widget.dart';
+import '/cs252/cs252_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';

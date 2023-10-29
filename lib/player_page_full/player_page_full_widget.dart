@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -152,6 +153,15 @@ class _PlayerPageFullWidgetState extends State<PlayerPageFullWidget> {
                         )
                       ],
                       borderRadius: BorderRadius.circular(26.0),
+                    ),
+                    child: FlutterFlowVideoPlayer(
+                      path: 'assets/videos/2vqf7_',
+                      videoType: VideoType.asset,
+                      autoPlay: false,
+                      looping: true,
+                      showControls: true,
+                      allowFullScreen: true,
+                      allowPlaybackSpeedMenu: false,
                     ),
                   ),
                   Padding(
