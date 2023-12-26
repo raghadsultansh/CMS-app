@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -15,11 +16,14 @@ import 'lat_lng.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
+export '../app_state.dart';
 export 'flutter_flow_model.dart';
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
 export 'dart:convert' show jsonEncode, jsonDecode;
 export 'package:intl/intl.dart';
+export 'package:cloud_firestore/cloud_firestore.dart'
+    show DocumentReference, FirebaseFirestore;
 export 'package:page_transition/page_transition.dart';
 
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<PageRoute>();
@@ -146,6 +150,27 @@ extension DateTimeComparisonOperators on DateTime {
   bool operator >=(DateTime other) => this > other || isAtSameMomentAs(other);
 }
 
+T? castToType<T>(dynamic value) {
+  if (value == null) {
+    return null;
+  }
+  switch (T) {
+    case double:
+      // Doubles may be stored as ints in some cases.
+      return value.toDouble() as T;
+    case int:
+      // Likewise, ints may be stored as doubles. If this is the case
+      // (i.e. no decimal value), return the value as an int.
+      if (value is num && value.toInt() == value) {
+        return value.toInt() as T;
+      }
+      break;
+    default:
+      break;
+  }
+  return value as T;
+}
+
 dynamic getJsonField(
   dynamic response,
   String jsonPath, [
@@ -159,7 +184,12 @@ dynamic getJsonField(
     return field.map((f) => f.value).toList();
   }
   final value = field.first.value;
-  return isForList && value is! Iterable ? [value] : value;
+  if (isForList) {
+    return value is! Iterable
+        ? [value]
+        : (value is List ? value : value.toList());
+  }
+  return value;
 }
 
 Rect? getWidgetBoundingBox(BuildContext context) {
@@ -212,11 +242,18 @@ extension FFTextEditingControllerExt on TextEditingController? {
 }
 
 extension IterableExt<T> on Iterable<T> {
+  List<T> sortedList<S extends Comparable>([S Function(T)? keyOf]) => toList()
+    ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+
   List<S> mapIndexed<S>(S Function(int, T) func) => toList()
       .asMap()
       .map((index, value) => MapEntry(index, func(index, value)))
       .values
       .toList();
+}
+
+extension StringDocRef on String {
+  DocumentReference get ref => FirebaseFirestore.instance.doc(this);
 }
 
 void setAppLanguage(BuildContext context, String language) =>
