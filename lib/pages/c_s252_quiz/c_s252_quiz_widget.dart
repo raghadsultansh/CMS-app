@@ -26,6 +26,8 @@ class _CS252QuizWidgetState extends State<CS252QuizWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS252QuizModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CS252_Quiz'});
   }
 
   @override
@@ -66,6 +68,8 @@ class _CS252QuizWidgetState extends State<CS252QuizWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('C_S252_QUIZ_arrow_back_rounded_ICN_ON_TA');
+              logFirebaseEvent('IconButton_navigate_to');
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -134,8 +138,11 @@ class _CS252QuizWidgetState extends State<CS252QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S252_QUIZ_Container_tvnmtltl_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
-                              'https://www.geeksforgeeks.org/data-structure-gq/top-mcqs-on-stack-data-strcuture-with-answers/');
+                              'https://docs.google.com/forms/d/e/1FAIpQLSckP5CdwQpHASHtZ11WBPJM3l4GZCieX-Cg80y2nSeEugnNSA/viewform');
                         },
                         child: Material(
                           color: Colors.transparent,
@@ -201,6 +208,9 @@ class _CS252QuizWidgetState extends State<CS252QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S252_QUIZ_Container_fljjq9l1_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
                               'https://www.geeksforgeeks.org/data-structure-gq/top-mcqs-on-linked-list-data-structure-with-answers/');
                         },
@@ -268,6 +278,9 @@ class _CS252QuizWidgetState extends State<CS252QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S252_QUIZ_Container_9s7qtghn_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
                               'https://www.geeksforgeeks.org/data-structure-gq/top-mcqs-on-hash-data-strcuture-with-answers/');
                         },

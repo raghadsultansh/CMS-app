@@ -30,6 +30,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS151VideosModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'CS151_Videos'});
   }
 
   @override
@@ -81,6 +84,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
                           size: 25.0,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'C_S151_VIDEOS_arrow_back_rounded_ICN_ON_');
+                          logFirebaseEvent('IconButton_navigate_to');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -149,6 +155,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'C_S151_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_navigate_to');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -222,6 +231,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'C_S151_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_navigate_to');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -295,6 +307,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'C_S151_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_navigate_to');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -369,6 +384,9 @@ class _CS151VideosWidgetState extends State<CS151VideosWidget> {
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'C_S151_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_navigate_to');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

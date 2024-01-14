@@ -26,6 +26,9 @@ class _CS252ArticleWidgetState extends State<CS252ArticleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS252ArticleModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'CS252_Article'});
   }
 
   @override
@@ -79,6 +82,9 @@ class _CS252ArticleWidgetState extends State<CS252ArticleWidget> {
                                 size: 30.0,
                               ),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'C_S252_ARTICLE_arrow_back_rounded_ICN_ON');
+                                logFirebaseEvent('IconButton_navigate_to');
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -149,6 +155,9 @@ class _CS252ArticleWidgetState extends State<CS252ArticleWidget> {
                                     0.0, 24.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'C_S252_ARTICLE_PAGE_READ_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_launch_u_r_l');
                                     await launchURL(
                                         'https://www.geeksforgeeks.org/applications-of-graph-data-structure/');
                                   },

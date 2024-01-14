@@ -1,10 +1,10 @@
-import '/chat_group_threads/chat_2_main/chat2_main_widget.dart';
+import '/chatspage/chatspage_widget.dart';
+import '/dash/dash_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/edit_profile_user/edit_profile_user_widget.dart';
 import '/pages/home_page/home_page_widget.dart';
-import '/pages/list_fav/list_fav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -109,6 +109,8 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                     size: 20.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('NAV_BAR_MUSIC_COMP_btnProfile_ON_TAP');
+                    logFirebaseEvent('btnProfile_navigate_to');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -128,6 +130,8 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('NAV_BAR_MUSIC_COMP_btnHome_ON_TAP');
+                    logFirebaseEvent('btnHome_navigate_to');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -142,15 +146,17 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                   borderWidth: 1.0,
                   buttonSize: 50.0,
                   icon: Icon(
-                    Icons.video_collection,
+                    Icons.ssid_chart_sharp,
                     color: Color(0xFF9299A1),
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('NAV_BAR_MUSIC_COMP_btnExplore_ON_TAP');
+                    logFirebaseEvent('btnExplore_navigate_to');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListFavWidget(),
+                        builder: (context) => DashWidget(),
                       ),
                     );
                   },
@@ -166,10 +172,15 @@ class _NavBarMusicWidgetState extends State<NavBarMusicWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('NAV_BAR_MUSIC_COMP_btnFav_ON_TAP');
+                    logFirebaseEvent('btnFav_navigate_to');
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Chat2MainWidget(),
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                        reverseDuration: Duration(milliseconds: 0),
+                        child: ChatspageWidget(),
                       ),
                     );
                   },

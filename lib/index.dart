@@ -3,7 +3,6 @@ export '/pages/login_page/login_page_widget.dart' show LoginPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/edit_profile_user/edit_profile_user_widget.dart'
     show EditProfileUserWidget;
-export '/pages/list_fav/list_fav_widget.dart' show ListFavWidget;
 export '/pages/cs150/cs150_widget.dart' show Cs150Widget;
 export '/pages/c_s150_quiz/c_s150_quiz_widget.dart' show CS150QuizWidget;
 export '/pages/c_s150_article/c_s150_article_widget.dart'
@@ -42,12 +41,12 @@ export '/pages/encapsulation/encapsulation_widget.dart'
     show EncapsulationWidget;
 export '/pages/createaccount/createaccount_widget.dart'
     show CreateaccountWidget;
-export '/changepass/changepass_widget.dart' show ChangepassWidget;
-export '/chat_group_threads/chat_2_details/chat2_details_widget.dart'
-    show Chat2DetailsWidget;
-export '/chat_group_threads/chat_2_main/chat2_main_widget.dart'
-    show Chat2MainWidget;
-export '/chat_group_threads/chat_2_invite_users/chat2_invite_users_widget.dart'
-    show Chat2InviteUsersWidget;
-export '/chat_group_threads/image_details/image_details_widget.dart'
-    show ImageDetailsWidget;
+export '/pages/changepass/changepass_widget.dart' show ChangepassWidget;
+export '/chatspage/chatspage_widget.dart' show ChatspageWidget;
+export '/dash/dash_widget.dart' show DashWidget;
+export '/pages/programming_subjects/programming_subjects_widget.dart'
+    show ProgrammingSubjectsWidget;
+export '/pages/math_subjects/math_subjects_widget.dart' show MathSubjectsWidget;
+export '/pages/physics_subjects/physics_subjects_widget.dart'
+    show PhysicsSubjectsWidget;
+export '/pages/awardpage/awardpage_widget.dart' show AwardpageWidget;

@@ -28,6 +28,8 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
     super.initState();
     _model = createModel(context, () => ReportingPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'reporting_page'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -103,7 +105,7 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                                           .alternate,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -111,21 +113,21 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   errorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   focusedErrorBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
@@ -143,6 +145,9 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                                     16.0, 16.0, 16.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'REPORTING_SUBMIT_REPORT_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_send_email');
                                     await launchUrl(Uri(
                                         scheme: 'mailto',
                                         path: 'shabakahcmsapp@gmail.com',
@@ -163,7 +168,7 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                                         0.0, 0.0, 0.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: Color(0xD2F3547A),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -179,21 +184,6 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                           ],
                         ),
                       ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30.0,
-                        borderWidth: 0.0,
-                        buttonSize: 60.0,
-                        fillColor: Color(0x16FFFFFF),
-                        icon: Icon(
-                          Icons.chevron_left_sharp,
-                          color: FlutterFlowTheme.of(context).lineColor,
-                          size: 30.0,
-                        ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                        },
-                      ),
                     ],
                   ),
                 ],
@@ -205,13 +195,15 @@ class _ReportingPageWidgetState extends State<ReportingPageWidget> {
                   borderRadius: 30.0,
                   borderWidth: 0.0,
                   buttonSize: 60.0,
-                  fillColor: Color(0xFF6193DF),
+                  fillColor: Color(0xFFE6657F),
                   icon: Icon(
                     Icons.chevron_left_sharp,
                     color: FlutterFlowTheme.of(context).lineColor,
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('REPORTING_chevron_left_sharp_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
                     Navigator.push(
                       context,
                       MaterialPageRoute(

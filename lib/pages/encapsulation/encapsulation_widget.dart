@@ -28,6 +28,8 @@ class _EncapsulationWidgetState extends State<EncapsulationWidget> {
     super.initState();
     _model = createModel(context, () => EncapsulationModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Encapsulation'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -92,6 +94,9 @@ class _EncapsulationWidgetState extends State<EncapsulationWidget> {
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'ENCAPSULATION_chevron_left_sharp_ICN_ON_');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),
