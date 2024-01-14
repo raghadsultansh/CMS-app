@@ -26,6 +26,8 @@ class _CS150QuizWidgetState extends State<CS150QuizWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS150QuizModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CS150_Quiz'});
   }
 
   @override
@@ -66,6 +68,8 @@ class _CS150QuizWidgetState extends State<CS150QuizWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('C_S150_QUIZ_arrow_back_rounded_ICN_ON_TA');
+              logFirebaseEvent('IconButton_navigate_to');
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -134,8 +138,11 @@ class _CS150QuizWidgetState extends State<CS150QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S150_QUIZ_Container_ijkoh03o_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
-                              'https://www.w3schools.com/quiztest/quiztest.asp?qtest=Java');
+                              'https://docs.google.com/forms/d/e/1FAIpQLSd9JVUbpnin91ZCKotkxxbBGcnDF8r-Z9xkTv3cjpFiPQhvKA/viewform');
                         },
                         child: Material(
                           color: Colors.transparent,

@@ -29,6 +29,9 @@ class _Lesson2introductiontoprogrammingWidgetState
     super.initState();
     _model =
         createModel(context, () => Lesson2introductiontoprogrammingModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Lesson2introductiontoprogramming'});
   }
 
   @override
@@ -92,6 +95,9 @@ class _Lesson2introductiontoprogrammingWidgetState
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'LESSON2INTRODUCTIONTOPROGRAMMING_chevron');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

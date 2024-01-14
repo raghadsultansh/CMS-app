@@ -1,9 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/changepass/changepass_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/changepass/changepass_widget.dart';
 import '/pages/login_page/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +29,9 @@ class _EditProfileUserWidgetState extends State<EditProfileUserWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EditProfileUserModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'editProfileUser'});
   }
 
   @override
@@ -272,6 +275,9 @@ class _EditProfileUserWidgetState extends State<EditProfileUserWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'EDIT_PROFILE_USER_Row_5g9p21we_ON_TAP');
+                                logFirebaseEvent('Row_navigate_to');
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -434,6 +440,9 @@ class _EditProfileUserWidgetState extends State<EditProfileUserWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'EDIT_PROFILE_USER_LOG_OUT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_auth');
                         await authManager.signOut();
                         Navigator.pushAndRemoveUntil(
                           context,
@@ -492,6 +501,9 @@ class _EditProfileUserWidgetState extends State<EditProfileUserWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'EDIT_PROFILE_USER_chevron_left_sharp_ICN');
+                    logFirebaseEvent('IconButton_navigate_back');
                     Navigator.pop(context);
                   },
                 ),

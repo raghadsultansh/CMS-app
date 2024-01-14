@@ -27,6 +27,8 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
     super.initState();
     _model = createModel(context, () => CreateaccountModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'createaccount'});
     _model.emailController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
 
@@ -116,28 +118,28 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                             color: Colors.white,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
@@ -171,28 +173,28 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                             color: Colors.white,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         suffixIcon: InkWell(
                           onTap: () => setState(
@@ -240,28 +242,28 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                             color: Colors.white,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(0.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         suffixIcon: InkWell(
                           onTap: () => setState(
@@ -294,6 +296,9 @@ class _CreateaccountWidgetState extends State<CreateaccountWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'CREATEACCOUNT_CREATE_ACCOUNT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_auth');
                         if (_model.passController.text !=
                             _model.confpassController.text) {
                           ScaffoldMessenger.of(context).showSnackBar(

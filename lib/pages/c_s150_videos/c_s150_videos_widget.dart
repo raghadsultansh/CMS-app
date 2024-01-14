@@ -29,6 +29,9 @@ class _CS150VideosWidgetState extends State<CS150VideosWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS150VideosModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'CS150_Videos'});
   }
 
   @override
@@ -80,6 +83,9 @@ class _CS150VideosWidgetState extends State<CS150VideosWidget> {
                           size: 30.0,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'C_S150_VIDEOS_arrow_back_rounded_ICN_ON_');
+                          logFirebaseEvent('IconButton_navigate_to');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -151,6 +157,9 @@ class _CS150VideosWidgetState extends State<CS150VideosWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'C_S150_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_to');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -225,6 +234,9 @@ class _CS150VideosWidgetState extends State<CS150VideosWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'C_S150_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_to');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -299,6 +311,9 @@ class _CS150VideosWidgetState extends State<CS150VideosWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'C_S150_VIDEOS_PAGE_play_arrow_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_to');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

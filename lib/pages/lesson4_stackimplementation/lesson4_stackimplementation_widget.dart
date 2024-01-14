@@ -28,6 +28,9 @@ class _Lesson4StackimplementationWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => Lesson4StackimplementationModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Lesson4Stackimplementation'});
   }
 
   @override
@@ -91,6 +94,9 @@ class _Lesson4StackimplementationWidgetState
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'LESSON4_STACKIMPLEMENTATION_chevron_left');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

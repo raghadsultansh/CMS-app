@@ -28,6 +28,7 @@ class _OopWidgetState extends State<OopWidget> {
     super.initState();
     _model = createModel(context, () => OopModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'OOP'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -92,6 +93,9 @@ class _OopWidgetState extends State<OopWidget> {
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'OOP_PAGE_chevron_left_sharp_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

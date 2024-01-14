@@ -1,13 +1,16 @@
 import '/components/nav_bar_music/nav_bar_music_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/pages/cs150/cs150_widget.dart';
 import '/pages/cs151/cs151_widget.dart';
 import '/pages/cs252/cs252_widget.dart';
+import '/pages/math_subjects/math_subjects_widget.dart';
+import '/pages/physics_subjects/physics_subjects_widget.dart';
+import '/pages/programming_subjects/programming_subjects_widget.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +32,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool textFieldSearchFocusListenerRegistered = false;
 
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
@@ -238,8 +242,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'HomePage'});
     _model.textFieldSearchController ??= TextEditingController();
-    _model.textFieldSearchFocusNode ??= FocusNode();
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -308,57 +312,138 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            controller: _model.textFieldSearchController,
-                            focusNode: _model.textFieldSearchFocusNode,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Search',
-                              hintText: 'courses,classes,subject name',
-                              hintStyle: FlutterFlowTheme.of(context).bodySmall,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
+                          child: Autocomplete<String>(
+                            initialValue: TextEditingValue(),
+                            optionsBuilder: (textEditingValue) {
+                              if (textEditingValue.text == '') {
+                                return const Iterable<String>.empty();
+                              }
+                              return ['CS 150', 'CS 151', 'CS 252', 'CS 114']
+                                  .where((option) {
+                                final lowercaseOption = option.toLowerCase();
+                                return lowercaseOption.contains(
+                                    textEditingValue.text.toLowerCase());
+                              });
+                            },
+                            optionsViewBuilder: (context, onSelected, options) {
+                              return AutocompleteOptionsList(
+                                textFieldKey: _model.textFieldSearchKey,
+                                textController:
+                                    _model.textFieldSearchController!,
+                                options: options.toList(),
+                                onSelected: onSelected,
+                                textStyle:
+                                    FlutterFlowTheme.of(context).bodyMedium,
+                                textHighlightStyle: TextStyle(),
+                                elevation: 4.0,
+                                optionBackgroundColor:
+                                    FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                optionHighlightColor:
+                                    FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                maxHeight: 200.0,
+                              );
+                            },
+                            onSelected: (String selection) {
+                              setState(() => _model
+                                  .textFieldSearchSelectedOption = selection);
+                              FocusScope.of(context).unfocus();
+                            },
+                            fieldViewBuilder: (
+                              context,
+                              textEditingController,
+                              focusNode,
+                              onEditingComplete,
+                            ) {
+                              _model.textFieldSearchFocusNode = focusNode;
+                              if (!textFieldSearchFocusListenerRegistered) {
+                                textFieldSearchFocusListenerRegistered = true;
+                                _model.textFieldSearchFocusNode!
+                                    .addListener(() => setState(() {}));
+                              }
+                              _model.textFieldSearchController =
+                                  textEditingController;
+                              return TextFormField(
+                                key: ValueKey((_model.textFieldSearchFocusNode
+                                            ?.hasFocus ??
+                                        false)
+                                    .toString()),
+                                key: _model.textFieldSearchKey,
+                                controller: textEditingController,
+                                focusNode: focusNode,
+                                onEditingComplete: onEditingComplete,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.textFieldSearchController',
+                                  Duration(milliseconds: 2000),
+                                  () => setState(() {}),
                                 ),
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
+                                autofocus: true,
+                                autofillHints: [AutofillHints.name],
+                                textInputAction: TextInputAction.search,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'courses,classes,subject name',
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).bodySmall,
+                                  errorStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  suffixIcon: Icon(
+                                    Icons.search_rounded,
+                                    color: Color(0xFF757575),
+                                    size: 22.0,
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              filled: true,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              suffixIcon: Icon(
-                                Icons.search_rounded,
-                                color: Color(0xFF757575),
-                                size: 22.0,
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                            validator: _model.textFieldSearchControllerValidator
-                                .asValidator(context),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                keyboardType: TextInputType.multiline,
+                                validator: _model
+                                    .textFieldSearchControllerValidator
+                                    .asValidator(context),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp('[a-zA-Z0-9]'))
+                                ],
+                              );
+                            },
                           ),
                         ),
-                      ],
+                      ].divide(SizedBox(width: 5.0)),
                     ),
                   ),
                   Padding(
@@ -366,66 +451,114 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            height: 60.0,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 8.0),
-                              child: FlutterFlowChoiceChips(
-                                options: [
-                                  ChipData('programming '),
-                                  ChipData('math'),
-                                  ChipData('physics')
-                                ],
-                                onChanged: (val) => setState(
-                                    () => _model.choiceChipsValue = val?.first),
-                                selectedChipStyle: ChipStyle(
-                                  backgroundColor: Color(0xFFEB0D70),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.white,
-                                      ),
-                                  iconColor: Colors.white,
-                                  iconSize: 18.0,
-                                  elevation: 4.0,
-                                ),
-                                unselectedChipStyle: ChipStyle(
-                                  backgroundColor: Color(0xFF2B318A),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodySmall
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                      ),
-                                  iconColor: Colors.transparent,
-                                  iconSize: 18.0,
-                                  elevation: 4.0,
-                                ),
-                                chipSpacing: 10.0,
-                                rowSpacing: 12.0,
-                                multiselect: false,
-                                alignment: WrapAlignment.start,
-                                controller:
-                                    _model.choiceChipsValueController ??=
-                                        FormFieldController<List<String>>(
-                                  [],
-                                ),
-                                wrapped: true,
+                        FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'HOME_PAGE_PAGE_PROGRAMMING_BTN_ON_TAP');
+                            logFirebaseEvent('Button_navigate_to');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProgrammingSubjectsWidget(),
                               ),
+                            );
+                          },
+                          text: 'programming',
+                          options: FFButtonOptions(
+                            height: 30.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
                             ),
+                            borderRadius: BorderRadius.circular(24.0),
+                            hoverColor: Color(0xFFEF39B0),
                           ),
                         ),
-                      ],
+                        FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('HOME_PAGE_PAGE_MATH_BTN_ON_TAP');
+                            logFirebaseEvent('Button_navigate_to');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MathSubjectsWidget(),
+                              ),
+                            );
+                          },
+                          text: 'Math',
+                          options: FFButtonOptions(
+                            height: 30.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(24.0),
+                            hoverColor: Color(0xFFEF39B0),
+                          ),
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'HOME_PAGE_PAGE_PHYSICS_BTN_ON_TAP');
+                            logFirebaseEvent('Button_navigate_to');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PhysicsSubjectsWidget(),
+                              ),
+                            );
+                          },
+                          text: 'Physics',
+                          options: FFButtonOptions(
+                            height: 30.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(24.0),
+                            hoverColor: Color(0xFFEF39B0),
+                          ),
+                        ),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
                   Padding(
@@ -499,6 +632,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_PAGE_Row_goc43d0t_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -552,6 +689,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_PAGE_Row_m6xx1bq4_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -605,6 +746,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_PAGE_Row_qz76qwby_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Row_navigate_to');
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

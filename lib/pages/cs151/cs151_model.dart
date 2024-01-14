@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/awardpage/awardpage_widget.dart';
 import '/pages/c_s151_article/c_s151_article_widget.dart';
 import '/pages/c_s151_quiz/c_s151_quiz_widget.dart';
 import '/pages/c_s151_videos/c_s151_videos_widget.dart';

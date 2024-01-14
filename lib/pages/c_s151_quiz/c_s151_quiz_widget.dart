@@ -26,6 +26,8 @@ class _CS151QuizWidgetState extends State<CS151QuizWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CS151QuizModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CS151_Quiz'});
   }
 
   @override
@@ -66,6 +68,8 @@ class _CS151QuizWidgetState extends State<CS151QuizWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('C_S151_QUIZ_arrow_back_rounded_ICN_ON_TA');
+              logFirebaseEvent('IconButton_navigate_to');
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -134,8 +138,11 @@ class _CS151QuizWidgetState extends State<CS151QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S151_QUIZ_Container_u4ox3vsj_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
-                              'https://www.javacodeexamples.com/java-object-oriented-programming-quiz-1');
+                              'https://docs.google.com/forms/d/e/1FAIpQLSfxO02icCeZnEMgp_Gd6vhIg4oYj6ERc6cVjFagcsbrsRlomA/viewform');
                         },
                         child: Material(
                           color: Colors.transparent,
@@ -201,6 +208,9 @@ class _CS151QuizWidgetState extends State<CS151QuizWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'C_S151_QUIZ_Container_3df1l48r_ON_TAP');
+                          logFirebaseEvent('Container_launch_u_r_l');
                           await launchURL(
                               'https://quizlet.com/488564475/java-quiz-2-gui-and-threads-flash-cards/');
                         },

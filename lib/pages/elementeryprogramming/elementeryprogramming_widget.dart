@@ -30,6 +30,8 @@ class _ElementeryprogrammingWidgetState
     super.initState();
     _model = createModel(context, () => ElementeryprogrammingModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'elementeryprogramming'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -94,6 +96,9 @@ class _ElementeryprogrammingWidgetState
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'ELEMENTERYPROGRAMMING_chevron_left_sharp');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

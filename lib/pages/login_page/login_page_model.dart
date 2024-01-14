@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -14,25 +15,28 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for emailField widget.
-  FocusNode? emailFieldFocusNode1;
-  TextEditingController? emailFieldController1;
-  String? Function(BuildContext, String?)? emailFieldController1Validator;
-  // State field(s) for emailField widget.
-  FocusNode? emailFieldFocusNode2;
-  TextEditingController? emailFieldController2;
-  String? Function(BuildContext, String?)? emailFieldController2Validator;
+  FocusNode? emailFieldFocusNode;
+  TextEditingController? emailFieldController;
+  String? Function(BuildContext, String?)? emailFieldControllerValidator;
+  // State field(s) for passwordfield widget.
+  FocusNode? passwordfieldFocusNode;
+  TextEditingController? passwordfieldController;
+  late bool passwordfieldVisibility;
+  String? Function(BuildContext, String?)? passwordfieldControllerValidator;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passwordfieldVisibility = false;
+  }
 
   void dispose() {
     unfocusNode.dispose();
-    emailFieldFocusNode1?.dispose();
-    emailFieldController1?.dispose();
+    emailFieldFocusNode?.dispose();
+    emailFieldController?.dispose();
 
-    emailFieldFocusNode2?.dispose();
-    emailFieldController2?.dispose();
+    passwordfieldFocusNode?.dispose();
+    passwordfieldController?.dispose();
   }
 
   /// Action blocks are added here.

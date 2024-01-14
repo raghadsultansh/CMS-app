@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/awardpage/awardpage_widget.dart';
 import '/pages/c_s150_article/c_s150_article_widget.dart';
 import '/pages/c_s150_quiz/c_s150_quiz_widget.dart';
 import '/pages/c_s150_videos/c_s150_videos_widget.dart';
@@ -29,6 +30,8 @@ class _Cs150WidgetState extends State<Cs150Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Cs150Model());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CS150'});
   }
 
   @override
@@ -69,6 +72,8 @@ class _Cs150WidgetState extends State<Cs150Widget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('CS150_PAGE_arrow_back_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_to');
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -145,6 +150,8 @@ class _Cs150WidgetState extends State<Cs150Widget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent('CS150_PAGE_START_QUIZ_BTN_ON_TAP');
+                          logFirebaseEvent('Button_navigate_to');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -204,6 +211,9 @@ class _Cs150WidgetState extends State<Cs150Widget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'CS150_PAGE_READ_ARTICLE_BTN_ON_TAP');
+                          logFirebaseEvent('Button_navigate_to');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -251,6 +261,8 @@ class _Cs150WidgetState extends State<Cs150Widget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent('CS150_PAGE_WATCH_VIDEO_BTN_ON_TAP');
+                          logFirebaseEvent('Button_navigate_to');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -295,6 +307,52 @@ class _Cs150WidgetState extends State<Cs150Widget> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Did you finish this Subject !',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).headlineMedium,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('CS150_PAGE_YEAH_!_BTN_ON_TAP');
+                            logFirebaseEvent('Button_navigate_to');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AwardpageWidget(),
+                              ),
+                            );
+                          },
+                          text: 'Yeah !',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).success,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

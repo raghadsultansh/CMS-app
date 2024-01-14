@@ -30,6 +30,8 @@ class _IntroductiontodatastructureWidgetState
     super.initState();
     _model = createModel(context, () => IntroductiontodatastructureModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'introductiontodatastructure'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -94,6 +96,9 @@ class _IntroductiontodatastructureWidgetState
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'INTRODUCTIONTODATASTRUCTURE_chevron_left');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

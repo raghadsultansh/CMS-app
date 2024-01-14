@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/flutter_flow_youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'complixityvideo_model.dart';
@@ -28,7 +27,8 @@ class _ComplixityvideoWidgetState extends State<ComplixityvideoWidget> {
     super.initState();
     _model = createModel(context, () => ComplixityvideoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'complixityvideo'});
   }
 
   @override
@@ -92,50 +92,11 @@ class _ComplixityvideoWidgetState extends State<ComplixityvideoWidget> {
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'COMPLIXITYVIDEO_chevron_left_sharp_ICN_O');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 50.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    40.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Playning now',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .gray200,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 0.0, 0.0, 0.0),
-                                child: Icon(
-                                  Icons.volume_up_sharp,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  size: 24.0,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    40.0, 0.0, 0.0, 0.0),
-                                child: Icon(
-                                  Icons.queue_music_sharp,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  size: 24.0,
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ],
@@ -165,225 +126,29 @@ class _ComplixityvideoWidgetState extends State<ComplixityvideoWidget> {
                         strictRelatedVideos: false,
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 25.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'video title',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  fontSize: 26.0,
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(1.0, -1.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 20.0, 0.0),
+                                child: Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  size: 24.0,
                                 ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 20.0, 0.0),
-                            child: Icon(
-                              Icons.favorite_border_outlined,
-                              color: FlutterFlowTheme.of(context).alternate,
-                              size: 24.0,
+                              ),
                             ),
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.open_in_full_rounded,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              size: 24.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(53.0, 0.0, 50.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'instructor',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              25.0, 0.0, 0.0, 0.0),
-                          child: Container(
-                            width: 325.0,
-                            child: Slider(
-                              activeColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              inactiveColor: Color(0x5EE7E5F8),
-                              min: 50.0,
-                              max: 9.0,
-                              value: _model.sliderValue ??= 9.0,
-                              onChanged: (newValue) {
-                                setState(() => _model.sliderValue = newValue);
-                              },
-                            ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(45.0, 0.0, 45.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '0:02',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                          Text(
-                            '3:21',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 25.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 0.0,
-                            buttonSize: 60.0,
-                            icon: Icon(
-                              Icons.repeat,
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              size: 30.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 25.0,
-                            borderWidth: 0.0,
-                            buttonSize: 60.0,
-                            icon: FaIcon(
-                              FontAwesomeIcons.backward,
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              size: 30.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  FlutterFlowTheme.of(context).alternate,
-                                  Color(0xFFF501C4)
-                                ],
-                                stops: [0.0, 1.0],
-                                begin: AlignmentDirectional(0.87, 1.0),
-                                end: AlignmentDirectional(-0.87, -1.0),
-                              ),
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 1.0,
-                              buttonSize: 60.0,
-                              icon: Icon(
-                                Icons.pause_rounded,
-                                color: FlutterFlowTheme.of(context).lineColor,
-                                size: 60.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 0.0,
-                            buttonSize: 60.0,
-                            icon: Icon(
-                              Icons.fast_forward_sharp,
-                              color: FlutterFlowTheme.of(context).lineColor,
-                              size: 36.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 0.0,
-                              buttonSize: 60.0,
-                              icon: Icon(
-                                Icons.replay_outlined,
-                                color: FlutterFlowTheme.of(context).lineColor,
-                                size: 36.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ],

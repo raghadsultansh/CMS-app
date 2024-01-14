@@ -28,6 +28,9 @@ class _Lesson1IntroductiontoCS150WidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => Lesson1IntroductiontoCS150Model());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Lesson1IntroductiontoCS150'});
   }
 
   @override
@@ -91,6 +94,9 @@ class _Lesson1IntroductiontoCS150WidgetState
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'LESSON1_INTRODUCTIONTO_C_S150_chevron_le');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

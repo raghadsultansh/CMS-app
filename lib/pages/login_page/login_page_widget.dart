@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -32,11 +33,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
-    _model.emailFieldController1 ??= TextEditingController();
-    _model.emailFieldFocusNode1 ??= FocusNode();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'loginPage'});
+    _model.emailFieldController ??= TextEditingController();
+    _model.emailFieldFocusNode ??= FocusNode();
 
-    _model.emailFieldController2 ??= TextEditingController();
-    _model.emailFieldFocusNode2 ??= FocusNode();
+    _model.passwordfieldController ??= TextEditingController();
+    _model.passwordfieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -141,9 +143,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 0.0, 15.0),
                                                     child: TextFormField(
                                                       controller: _model
-                                                          .emailFieldController1,
+                                                          .emailFieldController,
                                                       focusNode: _model
-                                                          .emailFieldFocusNode1,
+                                                          .emailFieldFocusNode,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
@@ -238,16 +240,49 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                     .lineColor,
                                                               ),
                                                       validator: _model
-                                                          .emailFieldController1Validator
+                                                          .emailFieldControllerValidator
                                                           .asValidator(context),
                                                     ),
                                                   ),
                                                   TextFormField(
                                                     controller: _model
-                                                        .emailFieldController2,
+                                                        .passwordfieldController,
                                                     focusNode: _model
-                                                        .emailFieldFocusNode2,
-                                                    obscureText: false,
+                                                        .passwordfieldFocusNode,
+                                                    onFieldSubmitted:
+                                                        (_) async {
+                                                      logFirebaseEvent(
+                                                          'LOGIN_passwordfield_ON_TEXTFIELD_SUBMIT');
+                                                      logFirebaseEvent(
+                                                          'passwordfield_auth');
+
+                                                      final user =
+                                                          await authManager
+                                                              .signInWithEmail(
+                                                        context,
+                                                        _model
+                                                            .emailFieldController
+                                                            .text,
+                                                        _model
+                                                            .passwordfieldController
+                                                            .text,
+                                                      );
+                                                      if (user == null) {
+                                                        return;
+                                                      }
+
+                                                      Navigator
+                                                          .pushAndRemoveUntil(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomePageWidget(),
+                                                        ),
+                                                        (r) => false,
+                                                      );
+                                                    },
+                                                    obscureText: !_model
+                                                        .passwordfieldVisibility,
                                                     decoration: InputDecoration(
                                                       labelText: 'Password',
                                                       labelStyle:
@@ -320,6 +355,27 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .lineColor,
                                                         size: 20.0,
                                                       ),
+                                                      suffixIcon: InkWell(
+                                                        onTap: () => setState(
+                                                          () => _model
+                                                                  .passwordfieldVisibility =
+                                                              !_model
+                                                                  .passwordfieldVisibility,
+                                                        ),
+                                                        focusNode: FocusNode(
+                                                            skipTraversal:
+                                                                true),
+                                                        child: Icon(
+                                                          _model.passwordfieldVisibility
+                                                              ? Icons
+                                                                  .visibility_outlined
+                                                              : Icons
+                                                                  .visibility_off_outlined,
+                                                          color:
+                                                              Color(0xFF757575),
+                                                          size: 22.0,
+                                                        ),
+                                                      ),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -331,7 +387,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                               .lineColor,
                                                         ),
                                                     validator: _model
-                                                        .emailFieldController2Validator
+                                                        .passwordfieldControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                   Padding(
@@ -376,6 +432,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'LOGIN_PAGE_PAGE_Column_spel9ska_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Column_navigate_to');
                                                               Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
@@ -429,6 +489,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'LOGIN_PAGE_PAGE_Column_3gxh00f2_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Column_navigate_to');
                                                               Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
@@ -485,6 +549,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'LOGIN_PAGE_PAGE_Column_kaa06862_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Column_navigate_to');
                                                               Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
@@ -510,17 +578,60 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       MainAxisAlignment
                                                                           .center,
                                                                   children: [
-                                                                    Text(
-                                                                      'LOGIN',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Poppins',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).lineColor,
+                                                                    InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        logFirebaseEvent(
+                                                                            'LOGIN_PAGE_PAGE_Text_5vchz6ql_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'Text_auth');
+
+                                                                        final user =
+                                                                            await authManager.signInWithEmail(
+                                                                          context,
+                                                                          _model
+                                                                              .emailFieldController
+                                                                              .text,
+                                                                          currentUserEmail,
+                                                                        );
+                                                                        if (user ==
+                                                                            null) {
+                                                                          return;
+                                                                        }
+
+                                                                        Navigator
+                                                                            .pushAndRemoveUntil(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                            builder: (context) =>
+                                                                                HomePageWidget(),
                                                                           ),
+                                                                          (r) =>
+                                                                              false,
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        'LOGIN',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              color: FlutterFlowTheme.of(context).lineColor,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ],
                                                                 ),
@@ -544,6 +655,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'LOGIN_PAGE_PAGE_SIGN_IN_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(

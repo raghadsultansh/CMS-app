@@ -28,6 +28,7 @@ class _ClassesWidgetState extends State<ClassesWidget> {
     super.initState();
     _model = createModel(context, () => ClassesModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'classes'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -92,6 +93,9 @@ class _ClassesWidgetState extends State<ClassesWidget> {
                               size: 30.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'CLASSES_chevron_left_sharp_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_navigate_back');
                               Navigator.pop(context);
                             },
                           ),

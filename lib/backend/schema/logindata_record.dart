@@ -61,6 +61,11 @@ class LogindataRecord extends FirestoreRecord {
   String get userName => _userName ?? '';
   bool hasUserName() => _userName != null;
 
+  // "password" field.
+  String? _password;
+  String get password => _password ?? '';
+  bool hasPassword() => _password != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -71,6 +76,7 @@ class LogindataRecord extends FirestoreRecord {
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _bio = snapshotData['bio'] as String?;
     _userName = snapshotData['user_name'] as String?;
+    _password = snapshotData['password'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -117,6 +123,7 @@ Map<String, dynamic> createLogindataRecordData({
   DateTime? editedTime,
   String? bio,
   String? userName,
+  String? password,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +136,7 @@ Map<String, dynamic> createLogindataRecordData({
       'edited_time': editedTime,
       'bio': bio,
       'user_name': userName,
+      'password': password,
     }.withoutNulls,
   );
 
@@ -148,7 +156,8 @@ class LogindataRecordDocumentEquality implements Equality<LogindataRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.editedTime == e2?.editedTime &&
         e1?.bio == e2?.bio &&
-        e1?.userName == e2?.userName;
+        e1?.userName == e2?.userName &&
+        e1?.password == e2?.password;
   }
 
   @override
@@ -161,7 +170,8 @@ class LogindataRecordDocumentEquality implements Equality<LogindataRecord> {
         e?.phoneNumber,
         e?.editedTime,
         e?.bio,
-        e?.userName
+        e?.userName,
+        e?.password
       ]);
 
   @override
