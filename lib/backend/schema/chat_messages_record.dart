@@ -31,28 +31,22 @@ class ChatMessagesRecord extends FirestoreRecord {
   String get text => _text ?? '';
   bool hasText() => _text != null;
 
-  // "timestamp" field.
-  DateTime? _timestamp;
-  DateTime? get timestamp => _timestamp;
-  bool hasTimestamp() => _timestamp != null;
-
   // "image" field.
   String? _image;
   String get image => _image ?? '';
   bool hasImage() => _image != null;
 
-  // "video" field.
-  String? _video;
-  String get video => _video ?? '';
-  bool hasVideo() => _video != null;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _chat = snapshotData['chat'] as DocumentReference?;
     _text = snapshotData['text'] as String?;
-    _timestamp = snapshotData['timestamp'] as DateTime?;
     _image = snapshotData['image'] as String?;
-    _video = snapshotData['video'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -93,18 +87,16 @@ Map<String, dynamic> createChatMessagesRecordData({
   DocumentReference? user,
   DocumentReference? chat,
   String? text,
-  DateTime? timestamp,
   String? image,
-  String? video,
+  DateTime? timestamp,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'user': user,
       'chat': chat,
       'text': text,
-      'timestamp': timestamp,
       'image': image,
-      'video': video,
+      'timestamp': timestamp,
     }.withoutNulls,
   );
 
@@ -120,14 +112,13 @@ class ChatMessagesRecordDocumentEquality
     return e1?.user == e2?.user &&
         e1?.chat == e2?.chat &&
         e1?.text == e2?.text &&
-        e1?.timestamp == e2?.timestamp &&
         e1?.image == e2?.image &&
-        e1?.video == e2?.video;
+        e1?.timestamp == e2?.timestamp;
   }
 
   @override
   int hash(ChatMessagesRecord? e) => const ListEquality()
-      .hash([e?.user, e?.chat, e?.text, e?.timestamp, e?.image, e?.video]);
+      .hash([e?.user, e?.chat, e?.text, e?.image, e?.timestamp]);
 
   @override
   bool isValidKey(Object? o) => o is ChatMessagesRecord;

@@ -60,7 +60,6 @@ class FirebaseAuthManager extends AuthManager
 
   @override
   Future signOut() {
-    logFirebaseEvent("SIGN_OUT");
     return FirebaseAuth.instance.signOut();
   }
 
@@ -71,7 +70,6 @@ class FirebaseAuthManager extends AuthManager
         print('Error: delete user attempted with no logged in user!');
         return;
       }
-      logFirebaseEvent("DELETE_USER");
       await currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
@@ -288,13 +286,12 @@ class FirebaseAuthManager extends AuthManager
   ) async {
     try {
       final userCredential = await signInFunc();
-      logFirebaseAuthEvent(userCredential?.user, authProvider);
       if (userCredential?.user != null) {
         await maybeCreateUser(userCredential!.user!);
       }
       return userCredential == null
           ? null
-          : CMSAppFirebaseUser.fromUserCredential(userCredential);
+          : Cms2024FirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
       final errorMsg = e.message?.contains('auth/email-already-in-use') ?? false
           ? 'The email is already in use by a different account'

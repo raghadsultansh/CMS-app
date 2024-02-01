@@ -1,43 +1,27 @@
 {
   "project_info": {
-    "project_number": "177521608799",
-    "project_id": "c-m-s-app-bxfs9z",
-    "storage_bucket": "c-m-s-app-bxfs9z.appspot.com"
+    "project_number": "1087800138241",
+    "firebase_url": "https://cms2024-8760c-default-rtdb.firebaseio.com",
+    "project_id": "cms2024-8760c",
+    "storage_bucket": "cms2024-8760c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:177521608799:android:3a74707b9e3196ea8673ea",
+        "mobilesdk_app_id": "1:1087800138241:android:fbe235ae745075061cfe00",
         "android_client_info": {
-          "package_name": "com.mycompany.cmsapp"
+          "package_name": "com.flutterflow.sniffsocial"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "177521608799-2losjg0e56na761sh65ojjpsgac66l7j.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDAXfFuEY1vw2VZxZtwnl7Dzhyhozs4ll0"
+          "current_key": "AIzaSyATEvgqgydHqQoxA28_79gF0XiEJpxQ000"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "177521608799-2losjg0e56na761sh65ojjpsgac66l7j.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "177521608799-93sh97l15golp5g3tfdjhslde70s7ddp.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.mycompany.cmsapp"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
