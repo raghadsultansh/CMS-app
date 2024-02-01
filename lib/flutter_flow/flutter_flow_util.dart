@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
@@ -13,6 +14,7 @@ import '../main.dart';
 
 import 'lat_lng.dart';
 
+export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
@@ -24,18 +26,25 @@ export 'package:intl/intl.dart';
 export 'package:cloud_firestore/cloud_firestore.dart'
     show DocumentReference, FirebaseFirestore;
 export 'package:page_transition/page_transition.dart';
-export '/backend/firebase_analytics/analytics.dart';
+export 'internationalization.dart' show FFLocalizations;
+export 'nav/nav.dart';
 
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<PageRoute>();
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;
 
+void _setTimeagoLocales() {
+  timeago.setLocaleMessages('en', timeago.EnMessages());
+  timeago.setLocaleMessages('en_short', timeago.EnShortMessages());
+}
+
 String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
   if (dateTime == null) {
     return '';
   }
   if (format == 'relative') {
+    _setTimeagoLocales();
     return timeago.format(dateTime, locale: locale, allowFromNow: true);
   }
   return DateFormat(format, locale).format(dateTime);
@@ -446,6 +455,12 @@ extension FFStringExt on String {
 
 extension ListFilterExt<T> on Iterable<T?> {
   List<T> get withoutNulls => where((s) => s != null).map((e) => e!).toList();
+}
+
+extension MapListContainsExt on List<dynamic> {
+  bool containsMap(dynamic map) => map is Map
+      ? any((e) => e is Map && const DeepCollectionEquality().equals(e, map))
+      : contains(map);
 }
 
 extension ListDivideExt<T extends Widget> on Iterable<T> {

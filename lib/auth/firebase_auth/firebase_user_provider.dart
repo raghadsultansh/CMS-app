@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 
 import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class CMSAppFirebaseUser extends BaseAuthUser {
-  CMSAppFirebaseUser(this.user);
+class Cms2024FirebaseUser extends BaseAuthUser {
+  Cms2024FirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -53,17 +55,20 @@ class CMSAppFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) => CMSAppFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => Cms2024FirebaseUser(user);
 }
 
-Stream<BaseAuthUser> cMSAppFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> cms2024FirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = CMSAppFirebaseUser(user);
+        currentUser = Cms2024FirebaseUser(user);
+        if (!kIsWeb) {
+          FirebaseCrashlytics.instance.setUserIdentifier(user?.uid ?? '');
+        }
         return currentUser!;
       },
     );

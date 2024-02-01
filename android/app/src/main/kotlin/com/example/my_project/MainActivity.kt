@@ -1,4 +1,4 @@
-package com.mycompany.cmsapp
+package com.flutterflow.sniffsocial
 
 import io.flutter.embedding.android.FlutterActivity
 

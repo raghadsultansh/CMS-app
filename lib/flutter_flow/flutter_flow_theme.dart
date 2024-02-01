@@ -54,15 +54,6 @@ abstract class FlutterFlowTheme {
   late Color error;
   late Color info;
 
-  late Color primaryBtnText;
-  late Color lineColor;
-  late Color grayIcon;
-  late Color gray200;
-  late Color gray600;
-  late Color black600;
-  late Color tertiary400;
-  late Color textColor;
-
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
   @Deprecated('Use displaySmall instead')
@@ -134,31 +125,22 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFFFF5963);
-  late Color primaryText = const Color(0xFF101213);
+  late Color primary = const Color(0xFF06D5CD);
+  late Color secondary = const Color(0xFF18AA99);
+  late Color tertiary = const Color(0xFF984BB6);
+  late Color alternate = const Color(0xFFDFEDEC);
+  late Color primaryText = const Color(0xFF101518);
   late Color secondaryText = const Color(0xFF57636C);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color primaryBackground = const Color(0xFFF5FBFB);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
-  late Color accent1 = const Color(0xFF616161);
-  late Color accent2 = const Color(0xFF757575);
-  late Color accent3 = const Color(0xFFE0E0E0);
-  late Color accent4 = const Color(0xFFEEEEEE);
-  late Color success = const Color(0xFF04A24C);
-  late Color warning = const Color(0xFFFCDC0C);
-  late Color error = const Color(0xFFE21C3D);
-  late Color info = const Color(0xFF1C4494);
-
-  late Color primaryBtnText = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFFE0E3E7);
-  late Color grayIcon = Color(0xFF95A1AC);
-  late Color gray200 = Color(0xFFDBE2E7);
-  late Color gray600 = Color(0xFF262D34);
-  late Color black600 = Color(0xFF090F13);
-  late Color tertiary400 = Color(0xFF39D2C0);
-  late Color textColor = Color(0xFF1E2429);
+  late Color accent1 = const Color(0x4C06D5CD);
+  late Color accent2 = const Color(0x4D18AA99);
+  late Color accent3 = const Color(0x4D984BB6);
+  late Color accent4 = const Color(0xB2FFFFFF);
+  late Color success = const Color(0xFF16857B);
+  late Color warning = const Color(0xFFF3C344);
+  late Color error = const Color(0xFFC4454D);
+  late Color info = const Color(0xFFFFFFFF);
 }
 
 abstract class Typography {
@@ -199,110 +181,109 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Poppins';
+  String get displayLargeFamily => 'Readex Pro';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Readex Pro',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
-        fontSize: 57.0,
+        fontWeight: FontWeight.w300,
+        fontSize: 52.0,
       );
-  String get displayMediumFamily => 'Poppins';
+  String get displayMediumFamily => 'Readex Pro';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Readex Pro',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
-        fontSize: 45.0,
+        fontWeight: FontWeight.w500,
+        fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Poppins';
+  String get displaySmallFamily => 'Readex Pro';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Poppins',
+        'Readex Pro',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 24.0,
+        fontWeight: FontWeight.w500,
+        fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Poppins';
+  String get headlineLargeFamily => 'Readex Pro';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Readex Pro',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Poppins';
+  String get headlineMediumFamily => 'Readex Pro';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 22.0,
-      );
-  String get headlineSmallFamily => 'Poppins';
-  TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Readex Pro',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 20.0,
+        fontWeight: FontWeight.normal,
+        fontSize: 28.0,
       );
-  String get titleLargeFamily => 'Poppins';
+  String get headlineSmallFamily => 'Readex Pro';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Readex Pro',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Inter';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Poppins';
+  String get titleMediumFamily => 'Inter';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        'Inter',
+        color: theme.info,
+        fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Poppins';
+  String get titleSmallFamily => 'Inter';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w600,
+        'Inter',
+        color: theme.info,
+        fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Poppins';
+  String get labelLargeFamily => 'Inter';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.primaryText,
+        'Inter',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+      );
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Inter',
+        color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Poppins';
-  TextStyle get labelMedium => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.primaryText,
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Inter',
+        color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Poppins';
-  TextStyle get labelSmall => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.primaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 11.0,
-      );
-  String get bodyLargeFamily => 'Poppins';
+  String get bodyLargeFamily => 'Inter';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Inter',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Poppins';
+  String get bodyMediumFamily => 'Inter';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Inter',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Poppins';
+  String get bodySmallFamily => 'Inter';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Poppins',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 14.0,
+        'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 12.0,
       );
 }
 
@@ -314,31 +295,22 @@ class DarkModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFFFF5963);
+  late Color primary = const Color(0xFF06D5CD);
+  late Color secondary = const Color(0xFF18AA99);
+  late Color tertiary = const Color(0xFF984BB6);
+  late Color alternate = const Color(0xFF293D3E);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFF95A1AC);
-  late Color primaryBackground = const Color(0xFF1A1F24);
-  late Color secondaryBackground = const Color(0xFF101213);
-  late Color accent1 = const Color(0xFFEEEEEE);
-  late Color accent2 = const Color(0xFFE0E0E0);
-  late Color accent3 = const Color(0xFF757575);
-  late Color accent4 = const Color(0xFF616161);
-  late Color success = const Color(0xFF04A24C);
-  late Color warning = const Color(0xFFFCDC0C);
-  late Color error = const Color(0xFFE21C3D);
-  late Color info = const Color(0xFF1C4494);
-
-  late Color primaryBtnText = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFF22282F);
-  late Color grayIcon = Color(0xFF95A1AC);
-  late Color gray200 = Color(0xFFDBE2E7);
-  late Color gray600 = Color(0xFF262D34);
-  late Color black600 = Color(0xFF090F13);
-  late Color tertiary400 = Color(0xFF39D2C0);
-  late Color textColor = Color(0xFF1E2429);
+  late Color primaryBackground = const Color(0xFF132121);
+  late Color secondaryBackground = const Color(0xFF101818);
+  late Color accent1 = const Color(0x4C06D5CD);
+  late Color accent2 = const Color(0x4D18AA99);
+  late Color accent3 = const Color(0x4D984BB6);
+  late Color accent4 = const Color(0xB3101818);
+  late Color success = const Color(0xFF16857B);
+  late Color warning = const Color(0xFFF3C344);
+  late Color error = const Color(0xFFC4454D);
+  late Color info = const Color(0xFFFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {

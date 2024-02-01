@@ -2,8 +2,6 @@ import '/components/inbox_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/home_page/home_page_widget.dart';
-import '/pages/reporting_page/reporting_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,10 +10,10 @@ import 'chatspage_model.dart';
 export 'chatspage_model.dart';
 
 class ChatspageWidget extends StatefulWidget {
-  const ChatspageWidget({Key? key}) : super(key: key);
+  const ChatspageWidget({super.key});
 
   @override
-  _ChatspageWidgetState createState() => _ChatspageWidgetState();
+  State<ChatspageWidget> createState() => _ChatspageWidgetState();
 }
 
 class _ChatspageWidgetState extends State<ChatspageWidget> {
@@ -27,8 +25,6 @@ class _ChatspageWidgetState extends State<ChatspageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatspageModel());
-
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'chatspage'});
   }
 
   @override
@@ -72,14 +68,7 @@ class _ChatspageWidgetState extends State<ChatspageWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      logFirebaseEvent('CHATSPAGE_PAGE_Icon_c6ibji83_ON_TAP');
-                      logFirebaseEvent('Icon_navigate_to');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePageWidget(),
-                        ),
-                      );
+                      context.pushNamed('homePage');
                     },
                     child: Icon(
                       Icons.arrow_back,
@@ -90,7 +79,7 @@ class _ChatspageWidgetState extends State<ChatspageWidget> {
                   Text(
                     'subjects disscution',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Inter',
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -114,14 +103,7 @@ class _ChatspageWidgetState extends State<ChatspageWidget> {
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    logFirebaseEvent('CHATSPAGE_PAGE_REPORT_CHAT_BTN_ON_TAP');
-                    logFirebaseEvent('Button_navigate_to');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ReportingPageWidget(),
-                      ),
-                    );
+                    context.pushNamed('Report');
                   },
                   text: 'Report chat',
                   options: FFButtonOptions(
@@ -132,7 +114,7 @@ class _ChatspageWidgetState extends State<ChatspageWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Inter',
                           color: Colors.white,
                         ),
                     elevation: 3.0,
